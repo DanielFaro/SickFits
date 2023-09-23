@@ -33,20 +33,15 @@ export default function Reset({ token }) {
     variables: inputs,
   });
 
-  console.log('## data in RequestReset ==', data);
-
   const successfulError = data?.redeemUserPassworedResetToken?.code
     ? data?.redeemUserPassworedResetToken
     : undefined;
   async function handleSubmit(e) {
     e.preventDefault(); // stop the form from submitting
     // send the email and password to graphqlAPI
-    const res = await reset().catch(console.error);
-    console.log(res);
+    await reset().catch(console.error);
     resetForm();
   }
-
-  console.log('## error in RequestReset ==', error);
 
   // the post method on the form prevents the password from appearing in URL
   return (

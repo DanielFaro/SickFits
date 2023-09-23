@@ -6,6 +6,7 @@ import { ApolloProvider } from '@apollo/client';
 import Page from '../components/Page';
 import '../components/styles/nprogress.css';
 import withData from '../lib/withData';
+import { CartStateProvider } from '../lib/cartState';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
@@ -15,9 +16,11 @@ Router.events.on('routeChangeError', () => NProgress.done());
 function MyApp({ Component, pageProps, apollo }) {
   return (
     <ApolloProvider client={apollo}>
-      <Page>
-        <Component {...pageProps} />
-      </Page>
+      <CartStateProvider>
+        <Page>
+          <Component {...pageProps} />
+        </Page>
+      </CartStateProvider>
     </ApolloProvider>
   );
 }
@@ -29,7 +32,7 @@ MyApp.getInitialProps = async function ({ Component, ctx }) {
     // if any pages have getInitioaProps method, then wait and fetch the props
     pageProps = await Component.getInitialProps(ctx);
   }
-  pageProps.query = ctx.query; // This gives acces
+  pageProps.query = ctx.query; // This gives access queries avaiable at page level, /products, /image etc.
   return { pageProps };
 };
 

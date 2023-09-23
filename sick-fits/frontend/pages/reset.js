@@ -3,7 +3,7 @@ import Reset from '../components/Reset';
 
 export default function ResetPage({ query }) {
   // query comes from url which we added when request reset was completed
-  console.log('## props in Reset Page', props);
+  // console.log('## props in Reset Page', props);
   if (!query.token) {
     return (
       <div>

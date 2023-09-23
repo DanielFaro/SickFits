@@ -31,7 +31,7 @@ const ProductsListStyles = styled.div`
 
 export default function Products({ page }) {
   const skip = page * perPage - perPage;
-  console.log('## Skip and first in Products comp ==', skip, perPage);
+
   const { data, error, loading } = useQuery(ALL_PRODUCTS_QUERY, {
     variables: {
       skip,

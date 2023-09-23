@@ -1,10 +1,11 @@
-import { useMutation } from '@apollo/client';
-import gql from 'graphql-tag';
-import useForm from '../lib/useForm';
-import Form from './styles/Form';
-import { CURRENT_USER_QUERY } from './User';
-import DisplayError from './ErrorMessage';
+import { useMutation } from "@apollo/client";
+import gql from "graphql-tag";
+import useForm from "../lib/useForm";
+import Form from "./styles/Form";
+import { CURRENT_USER_QUERY } from "./User";
+import DisplayError from "./ErrorMessage";
 
+// authenticateUserWithPassword is from our GraphQL
 const SIGNIN_MUTATION = gql`
   mutation SIGNIN_MUTATION($email: String!, $password: String!) {
     authenticateUserWithPassword(email: $email, password: $password) {
@@ -25,8 +26,8 @@ const SIGNIN_MUTATION = gql`
 
 export default function SignIn() {
   const { inputs, handleChange, resetForm } = useForm({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const [signin, { data, loading }] = useMutation(SIGNIN_MUTATION, {
@@ -45,11 +46,11 @@ export default function SignIn() {
 
   const error =
     data?.authenticateUserWithPassword.__typename ===
-    'UserAuthenticationWithPasswordFailure'
+    "UserAuthenticationWithPasswordFailure"
       ? data?.authenticateUserWithPassword
       : undefined;
 
-  console.log('## error in signin ==', error);
+  console.log("## error in signin ==", error);
 
   // the post method on the form prevents the password from appearing in URL
   return (

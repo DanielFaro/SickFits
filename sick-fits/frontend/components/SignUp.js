@@ -39,8 +39,6 @@ export default function SignUp() {
     resetForm();
   }
 
-  console.log('## error in signin ==', error);
-
   // the post method on the form prevents the password from appearing in URL
   return (
     // eslint-disable-next-line react/jsx-no-bind

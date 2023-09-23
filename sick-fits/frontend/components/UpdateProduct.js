@@ -39,15 +39,17 @@ export default function UpdateProduct({ id }) {
   const { data, error, loading } = useQuery(SINGLE_PRODUCT_QUERY, {
     variables: { id },
   });
-  console.log('data ==', data);
+
   // 2. We need to get the mutation to update it
   const [
     updateProduct,
     { data: updateData, error: updateError, loading: updateLoading },
   ] = useMutation(UPDATE_PRODUCT_MUTATION);
+
   // 2.5 Create some state for the form inputs
   const { inputs, handleChange, clearForm, resetForm } = useForm(data?.Product);
   if (loading) return <p>loading...</p>;
+
   // 3. We need the form to handle the updates
   return (
     <Form

@@ -1,10 +1,10 @@
 // Using Ethereal for fake email accounts.
-import 'dotenv/config';
+import "dotenv/config";
 import {
   createTransport,
   getTestMessageUrl,
   SentMessageInfo,
-} from 'nodemailer';
+} from "nodemailer";
 
 const transport = createTransport({
   host: process.env.MAIL_HOST,
@@ -51,18 +51,19 @@ export async function sendPasswordResetEmail(
   resetToken: string,
   to: string
 ): Promise<void> {
-  // We expect the function to return a Promise, and evetually resolve and return nothing
+  // We expect the function to return a Promise, and eventually resolve and return nothing
   // email the user a token
   const info = (await transport.sendMail({
     to,
-    from: 'test@example.com',
-    subject: 'Your password reset token!',
+    from: "test@example.com",
+    subject: "Your password reset token!",
     html: makeANiceEmail(`Your Password Reset Token is here!
     
       <a href="${process.env.FRONTEND_URL}/reset?token=${resetToken}">Click Here to reset</a>
     `),
   })) as MailResponse; // tells sendMail what we expect to return
-  if (process.env.MAIL_USER.includes('ethereal.email')) {
+  console.log("### hey test");
+  if (process.env.MAIL_USER.includes("ethereal.email")) {
     // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     console.log(
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions

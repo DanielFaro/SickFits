@@ -31,6 +31,8 @@ const CREATE_PRODUCT_MUTATION = gql`
   }
 `;
 
+// N.B. The photo field above has a linked create, which is a keystone thing
+
 export default function CreateProduct() {
   const { inputs, handleChange, clearForm, resetForm } = useForm({
     image: '',
@@ -47,7 +49,8 @@ export default function CreateProduct() {
     CREATE_PRODUCT_MUTATION,
     {
       variables: inputs,
-      refetchQueries: [{ query: ALL_PRODUCTS_QUERY }], // when call the mutation and it succeeds, then refetch all products
+      refetchQueries: [{ query: ALL_PRODUCTS_QUERY }],
+      // when call the mutation and it succeeds, then refetch all products
     }
   );
   return (

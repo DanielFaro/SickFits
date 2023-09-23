@@ -1,9 +1,9 @@
-import { useMutation } from '@apollo/client';
-import gql from 'graphql-tag';
-import useForm from '../lib/useForm';
-import Form from './styles/Form';
-import { CURRENT_USER_QUERY } from './User';
-import DisplayError from './ErrorMessage';
+import { useMutation } from "@apollo/client";
+import gql from "graphql-tag";
+import useForm from "../lib/useForm";
+import Form from "./styles/Form";
+import { CURRENT_USER_QUERY } from "./User";
+import DisplayError from "./ErrorMessage";
 
 const REQUEST_RESET_MUTATION = gql`
   mutation REQUEST_RESET_MUTATION($email: String!) {
@@ -16,7 +16,7 @@ const REQUEST_RESET_MUTATION = gql`
 
 export default function RequestReset() {
   const { inputs, handleChange, resetForm } = useForm({
-    email: '',
+    email: "",
   });
 
   const [signup, { data, loading, error }] = useMutation(
@@ -26,7 +26,7 @@ export default function RequestReset() {
     }
   );
 
-  console.log('## data in RequestReset ==', data);
+  console.log("## data in RequestReset ==", data);
   async function handleSubmit(e) {
     e.preventDefault(); // stop the form from submitting
     // send the email and password to graphqlAPI
@@ -35,7 +35,7 @@ export default function RequestReset() {
     resetForm();
   }
 
-  console.log('## error in RequestReset ==', error);
+  console.log("## error in RequestReset ==", error);
 
   // the post method on the form prevents the password from appearing in URL
   return (
